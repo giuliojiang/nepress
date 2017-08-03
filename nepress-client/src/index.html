@@ -6,9 +6,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   <script>
-    var socketioDestination = window.location.protocol + '//' + window.location.hostname + ':29772';
-    console.info("Socket.io connecting to " + socketioDestination);
-    var socket = io(socketioDestination);
+    var socket = io('https://' + window.location.hostname + ':29772', {secure: true});
   </script>
 
   <base href="/">

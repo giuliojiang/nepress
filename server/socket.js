@@ -1,6 +1,10 @@
 var socketio = require('socket.io')();
 
+var file_server = require('./file_server.js');
+
 module.exports.start = function() {
+
+    var https = file_server.getHttps();
 
     socketio.on('connection', function(socket) {
         console.info("A client connected " + socket);
@@ -11,6 +15,7 @@ module.exports.start = function() {
 
     });
 
-    socketio.listen(29772);
+    socketio.listen(https);
+    console.info("Socket.io started");
 
 };
