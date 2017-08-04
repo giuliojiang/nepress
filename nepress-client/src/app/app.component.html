@@ -1,6 +1,16 @@
-<h1>nePress</h1>
 
-<!--routerLinkActive="active" adds a CSS class when the route is active-->
-<a routerLink="/home">Home</a>
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
 
-<router-outlet>
+      <nepress-header></nepress-header>
+
+    </div>
+  </header>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+        <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

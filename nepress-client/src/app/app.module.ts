@@ -7,6 +7,7 @@ import {AppRoutingModule} from './app-routing.module';
 // Components
 import {AppComponent} from './app.component';
 import {HomeComponent} from './view/home.component';
+import {HeaderComponent} from './view/header.component';
 
 // Services
 import {GlobalutilService} from './data/globalutil.service';
@@ -16,7 +17,8 @@ import {SocketService} from './data/socket.service';
   // Here go all the component declarations
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
   ],
   // Here go all the other imported modules
   imports: [
