@@ -1,16 +1,33 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+// Modules
+import {AppRoutingModule} from './app-routing.module';
+
+// Components
+import {AppComponent} from './app.component';
+import {HomeComponent} from './view/home.component';
+
+// Services
+import {GlobalutilService} from './data/globalutil.service';
+import {SocketService} from './data/socket.service';
 
 @NgModule({
+  // Here go all the component declarations
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
+  // Here go all the other imported modules
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
-  providers: [],
+  // Here go all the injectable providers
+  providers: [
+    GlobalutilService, 
+    SocketService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
