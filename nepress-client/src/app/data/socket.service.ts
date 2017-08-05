@@ -20,6 +20,10 @@ export class SocketService {
         var destinationAddress: String = 'https://' + globalutil.getWindow().location.hostname + ':29772';
         console.info("Initializing SocketService: connecting to socket.io server ["+destinationAddress+"]");
         this.socket = io(destinationAddress, {secure: true});
+
+        this.socket.on("nepress_txt", function(msgobj) {
+            console.info("Received message from server: " + JSON.stringify(msgobj));
+        });
     }
 
 }
