@@ -32,4 +32,14 @@ Can request manually a new session token, for example when the previous session 
 }
 ```
 
+### Register
+
+```javascript
+{
+    _t: register_user,
+    username: string,
+    password: string
+}
+```
+
 ## User messages

@@ -9,7 +9,8 @@ module.exports.registerHandler = function(eventName, handleFunction) {
 
 // msgobj: incoming message from a socket.io event
 //         sent from the client
-module.exports.handle = function(msgobj) {
+// socket: socket.io connection object
+module.exports.handle = function(msgobj, socket) {
     console.info("handlers.js: received message " + JSON.stringify(msgobj));
 
     var t = msgobj._t;
@@ -25,5 +26,5 @@ module.exports.handle = function(msgobj) {
     }
 
     // Call the handler
-    theHandler(msgobj);
+    theHandler(msgobj, socket);
 };

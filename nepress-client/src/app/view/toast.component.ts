@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {GlobalutilService} from './../data/globalutil.service';
@@ -11,7 +11,7 @@ import {SocketService} from './../data/socket.service';
         './toast.component.css'
     ]
 })
-export class ToastComponent implements OnInit {
+export class ToastComponent implements OnInit, OnDestroy {
 
     // Constructor ------------------------------------------------------------
 
@@ -26,6 +26,18 @@ export class ToastComponent implements OnInit {
         console.info("ToastComponent: ngOnInit()");
 
         this.toastContainer = document.querySelector('#nepress_toast_container');
+
+        this.socket.register("alert", msgobj => {
+            this.toast(msgobj.msg);
+        });
+    }
+
+    // Implements OnDestroy ---------------------------------------------------
+
+    ngOnDestroy(): void {
+        console.info("Destroying ToastComponent");
+
+        this.socket.deregister("alert");
     }
 
     // Fields -----------------------------------------------------------------

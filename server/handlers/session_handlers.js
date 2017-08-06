@@ -1,7 +1,7 @@
 var handlers = require('./../handlers.js');
 
 // Handles session_manual_refresh
-var sessionManualRefresh = function(msgobj) {
+var sessionManualRefresh = function(msgobj, socket) {
     console.info("handler sessionManualRefresh received " + JSON.stringify(msgobj));
 } 
 

@@ -22,4 +22,13 @@ The client will need to request a new session
     _t: refresh_session
 }
 
+### Generic alert (displayed as Toast)
+
+```javascript
+{
+    _t: alert,
+    msg: String
+}
+```
+
 ## User messages

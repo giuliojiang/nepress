@@ -30,7 +30,7 @@ module.exports.start = function() {
         // Messages handler
         socket.on('nepress_txt', function(msgobj) {
             console.info("Received a message ["+JSON.stringify(msgobj)+"] from the client. Dispataching to event handler");
-            handlers.handle(msgobj);
+            handlers.handle(msgobj, socket);
         });
 
     });

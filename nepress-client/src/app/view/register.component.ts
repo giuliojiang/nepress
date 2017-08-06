@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {GlobalutilService} from './../data/globalutil.service';
@@ -11,7 +11,7 @@ import {SocketService} from './../data/socket.service';
         './register.component.css'
     ]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
     // Constructor ------------------------------------------------------------
 
@@ -24,6 +24,12 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit(): void {
         console.info("RegisterComponent: ngOnInit()");
+    }
+
+    // Implements OnDestroy
+
+    ngOnDestroy(): void {
+        console.info("Destroying RegisterComponent");
     }
 
     // Fields -----------------------------------------------------------------
