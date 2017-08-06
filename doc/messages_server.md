@@ -1,6 +1,7 @@
 # Socket.io messages from server to client
 
 All messages use socket.io event 'nepress_txt'
+All messages have fields _t
 
 ## Anonymous messages
 
@@ -13,21 +14,20 @@ All messages use socket.io event 'nepress_txt'
 }
 ```
 
-### Signal that the session has expired
-
-The client will need to request a new session
-
-```javascript
-{
-    _t: refresh_session
-}
-
 ### Generic alert (displayed as Toast)
 
 ```javascript
 {
     _t: alert,
     msg: String
+}
+```
+
+### Refresh session (expired)
+
+```javascript
+{
+    _t: refresh_session
 }
 ```
 

@@ -1,12 +1,14 @@
 // Send -----------------------------------------------------------------------
 // Send a message to the given socket
 
-module.exports.send = function(socket, msgobj) {
-    if (msgobj && typeof msgobj === 'object') {
+module.exports.send = function(socket, t, msgobj) {
+    try {
+        msgobj._t = t;
         socket.emit('nepress_txt', msgobj);
-    } else {
-        console.error(new Error("Attempted to send a non-object message!"));
+    } catch (err) {
+        console.error(err);
     }
+
 };
 
 // Send alert -----------------------------------------------------------------
@@ -14,10 +16,9 @@ module.exports.send = function(socket, msgobj) {
 
 module.exports.sendAlert = function(socket, alertContent) {
     var msg = {
-        _t: "alert",
         msg: module.exports.formatError(alertContent)
     };
-    module.exports.send(socket, msg);
+    module.exports.send(socket, "alert", msg);
 };
 
 // Format Error ---------------------------------------------------------------

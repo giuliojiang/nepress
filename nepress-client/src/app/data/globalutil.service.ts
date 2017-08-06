@@ -7,4 +7,8 @@ export class GlobalutilService {
         return window;
     }
 
+    getLocalStorage(): Storage {
+        return this.getWindow().localStorage;
+    }
+
 }

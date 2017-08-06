@@ -12,16 +12,6 @@ module.exports.start = function() {
     socketio.on('connection', function(socket) {
         console.info("A client connected " + socket);
 
-        // Perform initial session operations
-        var token = session.createNewSession(socket);
-
-        // Send the token to the client
-        var msg = {
-            _t: "new_token",
-            token: token
-        };
-        msgutil.send(socket, msg);
-
         // Disconnect handler
         socket.on('disconnect', function() {
             console.info("A client disconnected " + socket);

@@ -4,7 +4,7 @@ var msgutil = require('./util/msgutil.js');
 
 // Configuration --------------------------------------------------------------
 
-var SESSION_TIMEOUT_MS = 1.08e+7;
+var SESSION_TIMEOUT_MS = 172800000; // 48 hours
 
 // Data storage ---------------------------------------------------------------
 
@@ -48,6 +48,8 @@ var createNewSession = function(socket) {
         data: {}
     };
 
+    console.info("Creating new session with token " + newToken);
+
     refreshSession(newToken, socket);
 
     return newToken;
@@ -74,10 +76,7 @@ var refreshSession = function(token, socket) {
     sessionObject.timeout_handle = setTimeout(function() {
         // Once the timeout is reached, we need to send the refresh session
         // message to the client, and destroy the current session
-        var msg = {
-            _t: "refresh_session"
-        };
-        msgutil.send(socket, msg);
+        msgutil.send(socket, "refresh_session", {});
     }, SESSION_TIMEOUT_MS);
     console.info("Session ["+token+"] refreshed");
 
