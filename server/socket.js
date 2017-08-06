@@ -2,7 +2,7 @@ var socketio = require('socket.io')();
 
 var file_server = require('./file_server.js');
 var session = require('./session.js');
-var msgutil = require('./msgutil.js');
+var msgutil = require('./util/msgutil.js');
 var handlers = require('./handlers.js');
 
 module.exports.start = function() {

@@ -1,6 +1,6 @@
 var randomstring = require('randomstring');
 
-var msgutil = require('./msgutil.js');
+var msgutil = require('./util/msgutil.js');
 
 // Configuration --------------------------------------------------------------
 
