@@ -2,11 +2,10 @@
 
 ## Anonymous sessions
 
-The server sends an initial token when a connection from the client is received.
-
-The client can start sending requests once a token is received.
-
-The token is used keep a state on the server side. A session is timed and lasts 2 hours, after which the user is required to refresh the page.
+The client requests an initial token, and the server will respond with one.
+A token is valid for 48 hours, but it is refreshed every time the user uses it.
+The token is used keep a state on the server side.
+If the token expires, it is not valid anymore and the client will need to request a new one, possibly logging in again.
 
 Each session is kept on the server with the following information:
 
