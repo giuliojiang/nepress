@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 // Modules
 import {AppRoutingModule} from './app-routing.module';
@@ -8,6 +9,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './view/home.component';
 import {HeaderComponent} from './view/header.component';
+import {RegisterComponent} from './view/register.component';
 
 // Services
 import {GlobalutilService} from './data/globalutil.service';
@@ -18,12 +20,14 @@ import {SocketService} from './data/socket.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    RegisterComponent
   ],
   // Here go all the other imported modules
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   // Here go all the injectable providers
   providers: [

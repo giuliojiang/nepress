@@ -9,7 +9,7 @@ declare var io: any;
 @Injectable()
 export class SocketService {
 
-    // Initialization
+    // Initialization ---------------------------------------------------------
 
     socket = null;
 
@@ -25,5 +25,11 @@ export class SocketService {
             console.info("Received message from server: " + JSON.stringify(msgobj));
         });
     }
+
+    // Public methods ---------------------------------------------------------
+
+    send(msg: Object): void {
+        this.socket.emit("nepress_txt", msg);
+    };
 
 }

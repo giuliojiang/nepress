@@ -1,16 +1,7 @@
+<div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout">
 
-<!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
+    <nepress-header></nepress-header>
 
-      <nepress-header></nepress-header>
+    <router-outlet></router-outlet>
 
-    </div>
-  </header>
-  <main class="mdl-layout__content">
-    <div class="page-content">
-        <router-outlet></router-outlet>
-    </div>
-  </main>
 </div>

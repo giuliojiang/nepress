@@ -10,6 +10,8 @@ module.exports.registerHandler = function(eventName, handleFunction) {
 // msgobj: incoming message from a socket.io event
 //         sent from the client
 module.exports.handle = function(msgobj) {
+    console.info("handlers.js: received message " + JSON.stringify(msgobj));
+
     var t = msgobj._t;
     if (!t) {
         console.error("Error, received a message without type");
