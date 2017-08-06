@@ -11,6 +11,7 @@ import {HomeComponent} from './view/home.component';
 import {HeaderComponent} from './view/header.component';
 import {RegisterComponent} from './view/register.component';
 import {ToastComponent} from './view/toast.component';
+import {LoginComponent} from './view/login.component';
 
 // Services
 import {GlobalutilService} from './data/globalutil.service';
@@ -23,7 +24,8 @@ import {SocketService} from './data/socket.service';
     HomeComponent,
     HeaderComponent,
     RegisterComponent,
-    ToastComponent
+    ToastComponent,
+    LoginComponent
   ],
   // Here go all the other imported modules
   imports: [

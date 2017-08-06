@@ -5,13 +5,13 @@ import {GlobalutilService} from './../data/globalutil.service';
 import {SocketService} from './../data/socket.service';
 
 @Component({
-    selector: 'nepress-register',
-    templateUrl: './register.component.html',
+    selector: 'nepress-login',
+    templateUrl: './login.component.html',
     styleUrls: [
-        './register.component.css'
+        './login.component.css'
     ]
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
 
     // Constructor ------------------------------------------------------------
 
@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
     // Implements OnInit ------------------------------------------------------
 
     ngOnInit(): void {
-        console.info("RegisterComponent: ngOnInit()");
+        console.info("LoginComponent: ngOnInit()");
     }
 
     // Implements OnDestroy
 
     ngOnDestroy(): void {
-        console.info("Destroying RegisterComponent");
+        console.info("Destroying LoginComponent");
     }
 
     // Fields -----------------------------------------------------------------
@@ -39,15 +39,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     // Methods ----------------------------------------------------------------
 
-    registerKeyUp(event: any): void {
+    loginKeyUp(event: any): void {
         var keycode: number = event.keyCode;
         if (keycode == 13) {
             console.info("Detected an Enter keypress");
             var msg = {
-                username: this.username,
-                password: this.password
+                user: this.username,
+                pass: this.password
             };
-            this.socket.send("register_user", msg);
+            this.socket.send("login_user", msg);
         }
     }
 

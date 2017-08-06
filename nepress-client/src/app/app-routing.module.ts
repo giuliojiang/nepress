@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Import components
 import {HomeComponent} from './view/home.component';
 import {RegisterComponent} from './view/register.component';
+import {LoginComponent} from './view/login.component';
 
 const routes: Routes = [
     {
@@ -18,6 +19,10 @@ const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     }
 ];
 

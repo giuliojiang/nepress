@@ -42,10 +42,7 @@ export class SocketService {
 
         this.socket.on("connect", () => {
             console.info("Socket.io connected, requesting or validating token");
-            var msg = {
-                _t: "session_manual_refresh"
-            };
-            this.send(msg);
+            this.send("session_manual_refresh", {});
         });
 
         this.socket.on("nepress_txt", (msgobj) => {
@@ -78,7 +75,8 @@ export class SocketService {
         delete this.handlers[msgtype];
     }
 
-    send(msg: any): void {
+    send(type: string, msg: any): void {
+        msg._t = type;
         msg._token = this.globalutil.getLocalStorage().token;
         this.socket.emit("nepress_txt", msg);
     }

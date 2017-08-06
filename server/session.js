@@ -99,10 +99,52 @@ var removeSession = function(token) {
 
 };
 
+// Get a session data property
+var getSessionProperty = function(token, propertyName, callback) {
+    var sessionObject = activeSessions[token];
+    if (!sessionObject) {
+        callback(new Error("No session with token ["+token+"] found"));
+        return;
+    }
+
+    var theProperty = sessionObject[propertyName];
+    callback(null, theProperty);
+    return;
+};
+
+// Set a session data property
+var setSessionProperty = function(token, propertyName, newValue, callback) {
+    var sessionObject = activeSessions[token];
+    if (!sessionObject) {
+        callback(new Error("No session with token ["+token+"] found"));
+        return;
+    }
+
+    sessionObject[propertyName] = newValue;
+    callback();
+    return;
+};
+
+// Remove a session data property
+var delSessionProperty = function(token, propertyName, callback) {
+    var sessionObject = activeSessions[token];
+    if (!sessionObject) {
+        callback(new Error("No session with token ["+token+"] found"));
+        return;
+    }
+
+    delete sessionObject[propertyName];
+    callback();
+    return;
+};
+
 // Exports --------------------------------------------------------------------
 
 module.exports = {
     createNewSession: createNewSession,
     refreshSession: refreshSession,
-    removeSession: removeSession
+    removeSession: removeSession,
+    getSessionProperty: getSessionProperty,
+    setSessionProperty: setSessionProperty,
+    delSessionProperty: delSessionProperty
 };

@@ -28,7 +28,7 @@ If `token` is `null`, or an expired token, the server will send a new token for 
 
 ```javascript
 {
-    _t: home_login,
+    _t: login_user,
     user: String,
     pass: String
 }

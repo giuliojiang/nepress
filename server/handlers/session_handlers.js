@@ -11,7 +11,7 @@ var sessionManualRefresh = function(msgobj, socket) {
         token: token
     };
     msgutil.send(socket, "new_token", msg);
-} 
+};
 
 module.exports.init = function() {
 
