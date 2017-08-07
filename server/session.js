@@ -77,6 +77,7 @@ var refreshSession = function(token, socket) {
         // Once the timeout is reached, we need to send the refresh session
         // message to the client, and destroy the current session
         msgutil.send(socket, "refresh_session", {});
+        removeSession(token);
     }, SESSION_TIMEOUT_MS);
     console.info("Session ["+token+"] refreshed");
 
@@ -98,6 +99,11 @@ var removeSession = function(token) {
     // Remove from the active sessions
     delete activeSessions[token];
 
+};
+
+// Checks if a session is still active
+var sessionExists = function(token) {
+    return !!activeSessions[token];
 };
 
 // Get a session data property
@@ -145,6 +151,7 @@ module.exports = {
     createNewSession: createNewSession,
     refreshSession: refreshSession,
     removeSession: removeSession,
+    sessionExists: sessionExists,
     getSessionProperty: getSessionProperty,
     setSessionProperty: setSessionProperty,
     delSessionProperty: delSessionProperty

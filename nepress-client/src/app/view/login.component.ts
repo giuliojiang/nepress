@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         // Register handlers
         this.socket.register("login_success", msgobj => {
+            this.globalutil.getLocalStorage().token = msgobj.token;
             this.router.navigateByUrl('/home');
         });
     }

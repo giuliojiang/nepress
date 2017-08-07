@@ -1,3 +1,6 @@
+var session = require('./session.js');
+var msgutil = require('./util/msgutil.js');
+
 // Handlers collection --------------------------------------------------------
 
 var registeredHandlers = {};
@@ -24,6 +27,9 @@ module.exports.handle = function(msgobj, socket) {
         console.error(new Error("No handler registered for message type ["+t+"]"));
         return;
     }
+
+    // Refresh session
+    session.refreshSession(msgutil.getToken(msgobj), socket);
 
     // Call the handler
     theHandler(msgobj, socket);
