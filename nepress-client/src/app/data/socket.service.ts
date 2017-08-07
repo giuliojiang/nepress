@@ -46,7 +46,6 @@ export class SocketService {
         });
 
         this.socket.on("nepress_txt", (msgobj) => {
-            console.info("Received message from server: " + JSON.stringify(msgobj));
             var t = msgobj._t;
             if (!t) {
                 console.error("No field _t in message!");
@@ -55,7 +54,7 @@ export class SocketService {
 
             var theHandler = this.handlers[t];
             if (!theHandler) {
-                console.error("No handler registered for message type " + t);
+                console.error("No handler registered for message type ["+t+"] and message["+JSON.stringify(msgobj)+"]");
                 return;
             }
 

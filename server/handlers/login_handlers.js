@@ -4,6 +4,7 @@ var passwordHash = require('password-hash');
 var handlers = require('./../handlers.js');
 var msgutil = require('./../util/msgutil.js');
 var dbUser = require('./../db/user.js');
+var session = require('./../session.js');
 
 // Handles register
 var loginUser = function(msgobj, socket) {
@@ -37,6 +38,36 @@ var loginUser = function(msgobj, socket) {
                 callback("Login unsuccessful");
                 return;
             }
+        },
+
+        // Make new token for the user
+        function(callback) {
+            // Remove existing session
+            session.removeSession(msgutil.getToken(msgobj));
+
+            // Create a new session
+            var newToken = session.createNewSession(socket);
+
+            // Set the username of the new session
+            session.setSessionProperty(newToken, "username", msgobj.user, function(err) {
+                if (err) {
+                    callback(err);
+                    return;
+                } else {
+                    // Pass the token to the next function
+                    callback(null, newToken);
+                    return;
+                }
+            });
+        },
+
+        // Send the login success message
+        function(newToken, callback) {
+            msgutil.send(socket, "login_success", {
+                token: newToken
+            });
+            callback();
+            return;
         }
 
     ], function(err) {
@@ -46,7 +77,6 @@ var loginUser = function(msgobj, socket) {
             return;
         } else {
             console.info("Login successful");
-            msgutil.sendAlert(socket, "Login successful");
             return;
         }
     });

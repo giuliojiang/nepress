@@ -32,3 +32,12 @@ All messages have fields _t
 ```
 
 ## User messages
+
+### Login success
+
+```javascript
+{
+    _t: login_success,
+    token: String
+}
+```

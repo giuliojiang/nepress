@@ -89,6 +89,7 @@ var removeSession = function(token) {
     var sessionObject = activeSessions[token];
     if (!sessionObject) {
         console.info("No session found for token ["+token+"], skipping removeSession");
+        return;
     }
 
     var timeoutHandle = sessionObject.timeout_handle;

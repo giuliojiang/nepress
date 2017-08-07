@@ -23,3 +23,9 @@ The `timeout_handle` is used to refresh the timeout token that will set the sess
 The state is saved in the same way in the server.
 
 To login, the user sends a login message with username and password. If the login is successful, the server will cancel the anonymous session token and create a new token for the logged in user.
+
+## Session data object
+
+It has the following properties
+
+* username (optional) - the username of the logged in user associated to the session token

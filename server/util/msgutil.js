@@ -45,3 +45,13 @@ module.exports.formatError = function(err) {
         return err.stack;
     }
 };
+
+// Get special fields ---------------------------------------------------------
+
+module.exports.getType = function(msgobj) {
+    return msgobj._t;
+};
+
+module.exports.getToken = function(msgobj) {
+    return msgobj._token;
+};

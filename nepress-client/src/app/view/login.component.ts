@@ -17,13 +17,19 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     constructor(
         private globalutil: GlobalutilService,
-        private socket: SocketService
+        private socket: SocketService,
+        private router: Router
     ) {}
 
     // Implements OnInit ------------------------------------------------------
 
     ngOnInit(): void {
         console.info("LoginComponent: ngOnInit()");
+
+        // Register handlers
+        this.socket.register("login_success", msgobj => {
+            this.router.navigateByUrl('/home');
+        });
     }
 
     // Implements OnDestroy
