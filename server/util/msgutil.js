@@ -3,6 +3,9 @@
 
 module.exports.send = function(socket, t, msgobj) {
     try {
+        if (!msgobj) {
+            msgobj = {};
+        }
         msgobj._t = t;
         socket.emit('nepress_txt', msgobj);
     } catch (err) {

@@ -39,9 +39,19 @@ If `token` is `null`, or an expired token, the server will send a new token for 
 ```javascript
 {
     _t: register_user,
-    username: string,
-    password: string
+    username: String,
+    password: String
 }
 ```
 
 ## User messages
+
+### Write a new post
+
+```javascript
+{
+    _t: write_new_post,
+    title: String,
+    text: String
+}
+```

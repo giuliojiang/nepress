@@ -41,3 +41,11 @@ All messages have fields _t
     token: String
 }
 ```
+
+### New post submitted
+
+```javascript
+{
+    _t: write_new_post_submitted
+}
+```

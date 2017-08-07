@@ -145,6 +145,16 @@ var delSessionProperty = function(token, propertyName, callback) {
     return;
 };
 
+// true if the token corresponds to a logged in user
+var isLoggedIn = function(token) {
+    var sessionObject = activeSessions[token];
+    if (!sessionObject) {
+        return false;
+    }
+
+    return !!sessionObject.username;
+};
+
 // Exports --------------------------------------------------------------------
 
 module.exports = {
@@ -154,5 +164,6 @@ module.exports = {
     sessionExists: sessionExists,
     getSessionProperty: getSessionProperty,
     setSessionProperty: setSessionProperty,
-    delSessionProperty: delSessionProperty
+    delSessionProperty: delSessionProperty,
+    isLoggedIn: isLoggedIn
 };
