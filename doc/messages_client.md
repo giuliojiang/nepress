@@ -5,14 +5,6 @@ All messages have fields _t and _token
 
 ## Anonymous messages
 
-### Request homepage posts to be displayed
-
-```javascript
-{
-    _t: home_get_posts
-}
-```
-
 ### Request a new session
 
 Can request manually a new session token, for example when the previous session has expired.
@@ -41,6 +33,15 @@ If `token` is `null`, or an expired token, the server will send a new token for 
     _t: register_user,
     username: String,
     password: String
+}
+```
+
+### Get posts
+
+```javascript
+{
+    _t: home_get_posts,
+    page: Number
 }
 ```
 

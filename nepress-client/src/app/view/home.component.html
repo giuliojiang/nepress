@@ -1,11 +1,52 @@
-<main class="demo-main mdl-layout__content full-width">
-    <div class="demo-container mdl-grid full-width">
-        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-        <div class="demo-content mdl-shadow--4dp contentmdl-cell mdl-cell--8-col padding-20">
+<main class="demo-main mdl-layout__content nepress_full_width">
+    <div class="demo-container mdl-grid nepress_full_width">
 
-            <h3>Home</h3>
+        <div class="mdl-shadow--4dp mdl-cell nepress_blog_post" *ngFor="let x of posts">
+
+            <div class="mdl-cell mdl-cell--12-col">
+                <h3>{{x.title}}</h3>
+            </div>
+
+            <div class="mdl-cell mdl-cell--12-col">
+                <p>{{x.date.toDateString()}}
+            </div>
+
+            <div class="mdl-cell mdl-cell--12-col">
+                <p>{{x.text}}</p>
+            </div>
 
         </div>
+
+        <!--Pagination controls-->
+        <div class="mdl-shadow--4dp mdl-cell nepress_pagination">
+
+            <div class="mdl-grid nepress_page_selector">
+                <div class="mdl-cell mdl-cell--6-col nepress_page_label">
+                    <label>Page</label>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label nepress_full_width">
+                        <input class="mdl-textfield__input" type="number" [(ngModel)]="page" (keyup)="pageKeyUp($event)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdl-grid nepress_page_selector">
+                <div class="mdl-cell mdl-cell--6-col">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="previousPage()">
+                        Previous
+                    </button>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="nextPage()">
+                        Next
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 
 </main>

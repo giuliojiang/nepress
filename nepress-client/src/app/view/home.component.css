@@ -1,7 +1,27 @@
-.full-width {
+.nepress_full_width {
     width: 100%;
 }
 
-.padding-20 {
+.nepress_blog_post {
+    margin: auto;
+    width: 75%;
     padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.nepress_pagination {
+    margin: auto;
+    width: 75%;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.nepress_page_selector {
+    width: 50%;
+}
+
+.nepress_page_label {
+    font-size: 20px;
+    padding-top: 20px;
 }

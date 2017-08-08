@@ -31,6 +31,22 @@ All messages have fields _t
 }
 ```
 
+### Home, send post list
+
+```javascript
+{
+    _t: home_send_posts,
+    page: Number,
+    posts: [
+        {
+            title: String,
+            date: Date as milliseconds number,
+            text: String
+        }
+    ]
+}
+```
+
 ## User messages
 
 ### Login success

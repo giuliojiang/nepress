@@ -21,8 +21,14 @@ module.exports.addPost = function(title, text, callback) {
                 title: title,
                 text: text
             };
-            dbMain.post.insert(newDocument, callback);
-            return;
+            dbMain.post.insert(newDocument, function(err) {
+                if (err) {
+                    callback(err);
+                    return;
+                } else {
+                    callback();
+                }
+            });
         }
     ], callback);
 
@@ -44,3 +50,20 @@ module.exports.getPosts = function(start, limit, callback) {
     ], callback);
 
 };
+
+// Count number of posts
+// callback(err, count)
+module.exports.countPosts = function(callback) {
+
+    dbMain.post.count({}, function(err, count) {
+        if (err) {
+            callback(err);
+            return;
+        } else {
+            callback(null, count);
+            return;
+        }
+    });
+
+};
+
