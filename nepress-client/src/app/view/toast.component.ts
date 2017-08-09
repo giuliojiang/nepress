@@ -47,8 +47,7 @@ export class ToastComponent implements OnInit, OnDestroy {
     // Methods ----------------------------------------------------------------
 
     toast(msg: string): void {
-        var data = {message: msg};
-        this.toastContainer.MaterialSnackbar.showSnackbar(data);
+        this.globalutil.getMaterialize().toast(msg, 4000);
     }
 
 }

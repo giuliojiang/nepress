@@ -1,33 +1,39 @@
-<main class="demo-main mdl-layout__content full-width">
-    <div class="demo-container mdl-grid full-width">
-        <div class="mdl-cell mdl-cell--2-col"></div>
-        <div class="demo-content mdl-shadow--4dp contentmdl-cell mdl-cell--8-col padding-20">
+<div class="container">
 
-            <div class="mdl-cell">
-                <h3>Write post</h3>
-            </div>
+    <div class="row">
 
-            <div class="mdl-cell mdl-cell--12-col">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
-                    <input class="mdl-textfield__input title_text" type="text" placeholder="title" [(ngModel)]="title">
+        <div class="card grey lighten-5">
+
+            <div class="card-content blue-grey-text text-darken-4">
+
+                <span class="card-title">New Post</span>
+
+                <div class="row">
+
+                    <input id="write_title_input" type="text" [(ngModel)]="title">
+                    <label for="write_title_input">Title</label>
+
                 </div>
-            </div>
 
-            <div class="mdl-cell mdl-cell--12-col">
-                <div class="mdl-textfield mdl-js-textfield full-width">
-                    <textarea class="mdl-textfield__input textarea_size" type="text" rows= "3" [(ngModel)]="text"></textarea>
+                <div class="row">
+
+                    <div class="input-field col s12">
+                        <textarea id="write_text_input" class="materialize-textarea" [(ngModel)]="text"></textarea>
+                        <label for="write_text_input">Content</label>
+                    </div>
+
                 </div>
-            </div>
 
-            
+                <div class="card-action">
+                    <a class="waves-effect waves-light btn blue-grey lighten-2" (click)="submit()">
+                        Submit
+                    </a>
+                </div>
 
-            <div class="mdl-cell">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="submit()">
-                    Submit
-                </button>
             </div>
 
         </div>
+
     </div>
 
-</main>
+</div>

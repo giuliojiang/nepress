@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 
+declare var window: any;
+
 @Injectable()
 export class GlobalutilService {
 
@@ -9,6 +11,10 @@ export class GlobalutilService {
 
     getLocalStorage(): Storage {
         return this.getWindow().localStorage;
+    }
+
+    getMaterialize(): any {
+        return window.Materialize;
     }
 
 }

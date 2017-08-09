@@ -1,22 +1,27 @@
-<main class="demo-main mdl-layout__content full-width">
-    <div class="demo-container mdl-grid full-width">
-        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-        <div class="demo-content mdl-shadow--4dp contentmdl-cell mdl-cell--8-col padding-20">
+<div class="container">
 
-            <div class="mdl-cell">
-                <div class="mdl-cell--12-col">
-                    <h3>Login</h3>
+    <div class="row">
+
+        <div class="card grey lighten-5">
+
+            <div class="card-content blue-grey-text text-darken-4">
+
+                <span class="card-title">Login</span>
+
+                <div class="row" (keyup)="loginKeyUp($event)">
+
+                    <input id="login_username_input" type="text" [(ngModel)]="username">
+                    <label for="login_username_input">Username</label>
+
+                    <input id="login_password_input" type="password" [(ngModel)]="password">
+                    <label for="login_password_input">Password</label>
+
                 </div>
-            </div>
 
-            <div class="mdl-cell" (keyup)="loginKeyUp($event)">
-                    <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input login_input_field" type="text" [(ngModel)]="username" placeholder="username">
-                        <input class="mdl-textfield__input login_input_field" type="password" [(ngModel)]="password" placeholder="password">
-                    </div>
             </div>
 
         </div>
+
     </div>
 
-</main>
+</div>

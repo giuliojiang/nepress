@@ -43,7 +43,7 @@ module.exports.getPosts = function(start, limit, callback) {
         function(callback) {
             dbMain.post.find({}).sort({
                 date: -1
-            }).skip(start).limit(limit).exec(callback);
+            }).skip(start*limit).limit(limit).exec(callback);
             return;
         }
 

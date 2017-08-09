@@ -1,52 +1,45 @@
-<main class="demo-main mdl-layout__content nepress_full_width">
-    <div class="demo-container mdl-grid nepress_full_width">
+<div class="container">
 
-        <div class="mdl-shadow--4dp mdl-cell nepress_blog_post" *ngFor="let x of posts">
-
-            <div class="mdl-cell mdl-cell--12-col">
-                <h3>{{x.title}}</h3>
+    <div class="row">
+        <div class="card grey lighten-5">
+            <div class="card-content blue-grey-text text-darken-4">
+                <span class="card-title">Home</span>
             </div>
+        </div>
+    </div>
 
-            <div class="mdl-cell mdl-cell--12-col">
-                <p>{{x.date.toDateString()}}
-            </div>
-
-            <div class="mdl-cell mdl-cell--12-col">
+    <div class="row" *ngFor="let x of posts">
+        <div class="card grey lighten-5">
+            <div class="card-content blue-grey-text text-darken-4">
+                <span class="card-title">{{x.title}}</span>
+                <p>{{x.date.toDateString()}}</p>
                 <p>{{x.text}}</p>
             </div>
-
         </div>
+    </div>
 
-        <!--Pagination controls-->
-        <div class="mdl-shadow--4dp mdl-cell nepress_pagination">
-
-            <div class="mdl-grid nepress_page_selector">
-                <div class="mdl-cell mdl-cell--6-col nepress_page_label">
-                    <label>Page</label>
+    <div class="row">
+        <div class="card grey lighten-5">
+            <div class="card-content blue-grey-text text-darken-4">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Page" id="home_page_input" type="number" [(ngModel)]="page" (keyup)="pageKeyUp($event)">
+                    </div>
                 </div>
-                <div class="mdl-cell mdl-cell--6-col">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label nepress_full_width">
-                        <input class="mdl-textfield__input" type="number" [(ngModel)]="page" (keyup)="pageKeyUp($event)">
+                <div class="row">
+                    <div class="col s6">
+                        <a class="waves-effect waves-light btn blue-grey lighten-2" (click)="previousPage()">
+                            Previous
+                        </a>
+                    </div>
+                    <div class="col s6">
+                        <a class="waves-effect waves-light btn blue-grey lighten-2" (click)="nextPage()">
+                            Next
+                        </a>
                     </div>
                 </div>
             </div>
-
-            <div class="mdl-grid nepress_page_selector">
-                <div class="mdl-cell mdl-cell--6-col">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="previousPage()">
-                        Previous
-                    </button>
-                </div>
-                <div class="mdl-cell mdl-cell--6-col">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="nextPage()">
-                        Next
-                    </button>
-                </div>
-            </div>
-
         </div>
-
-
     </div>
 
-</main>
+</div>

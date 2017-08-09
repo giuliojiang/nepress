@@ -7,7 +7,7 @@ var handlers = require('./../handlers.js');
 
 // Configuration --------------------------------------------------------------
 
-var POSTS_PER_PAGE = 1;
+var POSTS_PER_PAGE = 10;
 
 // Handle home_get_posts ------------------------------------------------------
 
@@ -57,7 +57,6 @@ var handleHomeGetPosts = function(msgobj, socket) {
             var postsResp = [];
             for (var i = 0; i < docs.length; i++) {
                 var doc = docs[i];
-                console.log("date  is " + doc.date.UT)
                 postsResp.push({
                     title: doc.title,
                     date: doc.date.getTime(),

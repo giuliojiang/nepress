@@ -13,6 +13,7 @@ import {RegisterComponent} from './view/register.component';
 import {ToastComponent} from './view/toast.component';
 import {LoginComponent} from './view/login.component';
 import {WriteComponent} from './view/write.component';
+import {FooterComponent} from './view/footer.component';
 
 // Services
 import {GlobalutilService} from './data/globalutil.service';
@@ -27,7 +28,8 @@ import {SocketService} from './data/socket.service';
     RegisterComponent,
     ToastComponent,
     LoginComponent,
-    WriteComponent
+    WriteComponent,
+    FooterComponent
   ],
   // Here go all the other imported modules
   imports: [
