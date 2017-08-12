@@ -22,6 +22,20 @@ var handleWriteNewPost = function(msgobj, socket) {
             }
         },
 
+        // Check that title and post are not empty
+        function(callback) {
+            if (stringNullOrEmpty(msgobj.title)) {
+                callback("Title is empty");
+                return;
+            } else if (stringNullOrEmpty(msgobj.text)) {
+                callback("Text is empty");
+                return;
+            } else {
+                callback();
+                return;
+            }
+        },
+
         // Insert post in database
         function(callback) {
             var title = msgobj.title;
@@ -62,4 +76,10 @@ module.exports.init = function() {
 
     handlers.registerHandler("write_new_post", handleWriteNewPost);
 
+};
+
+// Utilities ------------------------------------------------------------------
+
+var stringNullOrEmpty = function(s) {
+    return !s || s == '';
 };
