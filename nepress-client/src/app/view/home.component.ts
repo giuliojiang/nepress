@@ -40,15 +40,14 @@ export class HomeComponent implements OnInit {
             var posts = msgobj.posts as any[];
             for (var i = 0; i < posts.length; i++) {
                 var post = posts[i];
-                console.info("unsafe html is " + post.text);
                 var safeHtml = this.sanitizer.bypassSecurityTrustHtml(post.text);
-                console.info("safe html is " + safeHtml);
                 this.posts.push({
                     title: post.title,
                     date: new Date(post.date),
                     text: safeHtml
                 });
             }
+            this.globalutil.getWindow().scrollTo(0, 0);
         });
 
         // Request posts

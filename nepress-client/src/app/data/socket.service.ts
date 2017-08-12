@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {GlobalutilService} from './globalutil.service';
+import {GlobalcommService} from './globalcomm.service';
 
 // Declare the usage of an external library: socket.io
 // io is imported in the app in index.html
@@ -18,22 +19,11 @@ export class SocketService {
     socket = null;
 
     constructor(
-        private globalutil: GlobalutilService
+        private globalutil: GlobalutilService,
+        private globalcomm: GlobalcommService
     ) {
 
-        // Initialize handler for new_token
-        this.register("new_token", (msgobj) => {
-            var token = msgobj.token;
-            console.info("Received new token " + token);
-            this.globalutil.getLocalStorage().token = token;
-        })
-
-        // Initialize handler for refresh_session
-        this.register("refresh_session", (msgobj) => {
-            console.info("Session expired, requesting a new one");
-            // Reload page
-            this.globalutil.getWindow().location.reload();
-        });
+        this.globalcomm.registerGlobalHandlers(this);
 
         // Connect to the socket.io server
         var destinationAddress: String = 'https://' + globalutil.getWindow().location.hostname + ':29772';
@@ -75,6 +65,9 @@ export class SocketService {
     }
 
     send(type: string, msg: any): void {
+        if (!msg) {
+            msg = {};
+        }
         msg._t = type;
         msg._token = this.globalutil.getLocalStorage().token;
         this.socket.emit("nepress_txt", msg);

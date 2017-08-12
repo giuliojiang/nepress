@@ -10,9 +10,12 @@ All messages have fields _t
 ```javascript
 {
     _t: new_token,
-    token: String
+    token: String,
+    username: String
 }
 ```
+
+If the token corresponds to an already-logged in user, username is not null.
 
 ### Generic alert (displayed as Toast)
 
@@ -54,9 +57,12 @@ All messages have fields _t
 ```javascript
 {
     _t: login_success,
-    token: String
+    token: String,
+    username: String
 }
 ```
+
+Sends the new token for a logged in user, and the username for display.
 
 ### New post submitted
 

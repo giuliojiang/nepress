@@ -18,6 +18,8 @@ var SESSION_TIMEOUT_MS = 172800000; // 48 hours
 // The timeout_handle is used to automatically destroy a session once its
 // timeout is reached. It can be refreshed and cancelled.
 // socket is a socket.io client socket connection object.
+// Session properties:
+// -    username
 var activeSessions = {};
 
 // Utilities ------------------------------------------------------------------
@@ -107,6 +109,7 @@ var sessionExists = function(token) {
 };
 
 // Get a session data property
+// callback(err, propertyValue)
 var getSessionProperty = function(token, propertyName, callback) {
     var sessionObject = activeSessions[token];
     if (!sessionObject) {

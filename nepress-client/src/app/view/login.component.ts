@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 
 import {GlobalutilService} from './../data/globalutil.service';
 import {SocketService} from './../data/socket.service';
+import {UserdataService} from './../data/userdata.service';
 
 @Component({
     selector: 'nepress-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private globalutil: GlobalutilService,
         private socket: SocketService,
-        private router: Router
+        private router: Router,
+        private userdata: UserdataService
     ) {}
 
     // Implements OnInit ------------------------------------------------------
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         // Register handlers
         this.socket.register("login_success", msgobj => {
             this.globalutil.getLocalStorage().token = msgobj.token;
+            this.userdata.setUsername(msgobj.username);
             this.router.navigateByUrl('/home');
         });
     }

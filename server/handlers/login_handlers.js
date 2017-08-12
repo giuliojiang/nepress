@@ -64,7 +64,8 @@ var loginUser = function(msgobj, socket) {
         // Send the login success message
         function(newToken, callback) {
             msgutil.send(socket, "login_success", {
-                token: newToken
+                token: newToken,
+                username: msgobj.user
             });
             callback();
             return;

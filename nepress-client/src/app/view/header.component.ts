@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 
 import {GlobalutilService} from './../data/globalutil.service';
 import {SocketService} from './../data/socket.service';
+import {UserdataService} from './../data/userdata.service';
 
 @Component({
     selector: 'nepress-header',
@@ -17,13 +18,24 @@ export class HeaderComponent implements OnInit {
 
     constructor(
         private globalutil: GlobalutilService,
-        private socket: SocketService
+        private socket: SocketService,
+        private userdata: UserdataService
     ) {}
 
     // Implements OnInit ------------------------------------------------------
 
     ngOnInit(): void {
         console.info("HeaderComponent: ngOnInit()");
+    }
+
+    // Methods ----------------------------------------------------------------
+
+    isLoggedIn(): boolean {
+        return !!this.userdata.getUsername();
+    }
+
+    getUsername(): string {
+        return this.userdata.getUsername();
     }
 
 }

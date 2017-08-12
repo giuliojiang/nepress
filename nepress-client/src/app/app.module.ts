@@ -18,6 +18,8 @@ import {FooterComponent} from './view/footer.component';
 // Services
 import {GlobalutilService} from './data/globalutil.service';
 import {SocketService} from './data/socket.service';
+import {GlobalcommService} from './data/globalcomm.service';
+import {UserdataService} from './data/userdata.service';
 
 @NgModule({
   // Here go all the component declarations
@@ -40,7 +42,9 @@ import {SocketService} from './data/socket.service';
   // Here go all the injectable providers
   providers: [
     GlobalutilService, 
-    SocketService
+    SocketService,
+    GlobalcommService,
+    UserdataService
     ],
   bootstrap: [AppComponent]
 })

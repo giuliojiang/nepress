@@ -6,8 +6,23 @@ var msgutil = require('./../util/msgutil.js');
 var sessionManualRefresh = function(msgobj, socket) {
     console.info("handler sessionManualRefresh received " + JSON.stringify(msgobj));
 
+    var oldToken = msgutil.getToken(msgobj);
+
     // If session still exists, do nothing
     if (session.sessionExists(msgutil.getToken(msgobj))) {
+        session.getSessionProperty(oldToken, "username", function(err, val) {
+            if (err) {
+                console.error(err);
+                return;
+            } else {
+                var msg = {
+                    token: oldToken,
+                    username: val
+                };
+                msgutil.send(socket, "new_token", msg);
+                return;
+            }
+        });
         return;
     }
 

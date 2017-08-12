@@ -8,6 +8,7 @@ var markdown = require('markdown-it')({
 markdown.use(require('markdown-it-video', {
   youtube: { width: 640, height: 390 }
 }));
+var sanitizeHtml = require('sanitize-html');
 
 var dbPost = require('./../db/post.js');
 var msgutil = require('../util/msgutil.js');
@@ -17,6 +18,26 @@ var handlers = require('./../handlers.js');
 // Configuration --------------------------------------------------------------
 
 var POSTS_PER_PAGE = 10;
+
+var sanitizeAllowedTags = sanitizeHtml.defaults.allowedTags;
+sanitizeAllowedTags.push("img");
+sanitizeAllowedTags.push("iframe");
+sanitizeAllowedTags.push("div");
+
+var sanitizeAllowedAttributes = sanitizeHtml.defaults.allowedAttributes;
+sanitizeAllowedAttributes.iframe = [
+    'class',
+    'style',
+    'id',
+    'type',
+    'width',
+    'height',
+    'src',
+    'frameborder'
+];
+sanitizeAllowedAttributes.div = [
+    'class'
+];
 
 // Handle home_get_posts ------------------------------------------------------
 
@@ -67,26 +88,18 @@ var handleHomeGetPosts = function(msgobj, socket) {
             for (var i = 0; i < docs.length; i++) {
                 var doc = docs[i];
                 var rendered = markdown.render(doc.text);
+                console.info("RENDERED " + rendered);
+                // Make sure the iframes have a responsive width
                 rendered = rendered.split("iframe").join('iframe style="width:100%;"');
-                console.info("Rendered HTML is: " + rendered);
-
-                // Find youtube source links
-                var youtubeLinks = [];
-                var renderedSplit = rendered.split('"');
-                renderedSplit.forEach(s => {
-                    if (s.includes("youtube.com/embed/")) {
-                        if (checkYoutubeLinkValid(s)) {
-                            youtubeLinks.push(s);
-                        }
-                    }
-                })
-                console.info("Youtube links are " + youtubeLinks);
-
+                var renderedSafe = sanitizeHtml(rendered, {
+                    allowedTags: sanitizeAllowedTags,
+                    allowedAttributes: sanitizeAllowedAttributes
+                });
+                console.info("SAFE " + renderedSafe);
                 postsResp.push({
                     title: doc.title,
                     date: doc.date.getTime(),
-                    text: rendered,
-                    safelinks: youtubeLinks
+                    text: renderedSafe
                 });
             }
             var msg = {
