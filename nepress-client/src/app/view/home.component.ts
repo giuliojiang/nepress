@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 import {Post} from './../class/post';
 import {GlobalutilService} from './../data/globalutil.service';
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit {
 
     constructor(
         private globalutil: GlobalutilService,
-        private socket: SocketService
+        private socket: SocketService,
+        private sanitizer: DomSanitizer
     ) {}
 
     // Implements OnInit ------------------------------------------------------
@@ -38,10 +40,13 @@ export class HomeComponent implements OnInit {
             var posts = msgobj.posts as any[];
             for (var i = 0; i < posts.length; i++) {
                 var post = posts[i];
+                console.info("unsafe html is " + post.text);
+                var safeHtml = this.sanitizer.bypassSecurityTrustHtml(post.text);
+                console.info("safe html is " + safeHtml);
                 this.posts.push({
                     title: post.title,
                     date: new Date(post.date),
-                    text: post.text
+                    text: safeHtml
                 });
             }
         });

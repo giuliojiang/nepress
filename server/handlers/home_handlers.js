@@ -1,4 +1,13 @@
 var async = require('async');
+var markdownVideo = require('markdown-it-video');
+var markdown = require('markdown-it')({
+  html: true,
+  linkify: true,
+  typography: true
+});
+markdown.use(require('markdown-it-video', {
+  youtube: { width: 640, height: 390 }
+}));
 
 var dbPost = require('./../db/post.js');
 var msgutil = require('../util/msgutil.js');
@@ -57,10 +66,27 @@ var handleHomeGetPosts = function(msgobj, socket) {
             var postsResp = [];
             for (var i = 0; i < docs.length; i++) {
                 var doc = docs[i];
+                var rendered = markdown.render(doc.text);
+                rendered = rendered.split("iframe").join('iframe style="width:100%;"');
+                console.info("Rendered HTML is: " + rendered);
+
+                // Find youtube source links
+                var youtubeLinks = [];
+                var renderedSplit = rendered.split('"');
+                renderedSplit.forEach(s => {
+                    if (s.includes("youtube.com/embed/")) {
+                        if (checkYoutubeLinkValid(s)) {
+                            youtubeLinks.push(s);
+                        }
+                    }
+                })
+                console.info("Youtube links are " + youtubeLinks);
+
                 postsResp.push({
                     title: doc.title,
                     date: doc.date.getTime(),
-                    text: doc.text
+                    text: rendered,
+                    safelinks: youtubeLinks
                 });
             }
             var msg = {
@@ -87,4 +113,19 @@ module.exports.init = function() {
 
     handlers.registerHandler("home_get_posts", handleHomeGetPosts);
 
+};
+
+// Utilities ------------------------------------------------------------------
+
+var checkYoutubeLinkValid = function(s) {
+    if (s.includes(" ")) {
+        return false;
+    }
+    if (s.includes("<")) {
+        return false;
+    }
+    if (s.includes(">")) {
+        return false;
+    }
+    return true;
 };

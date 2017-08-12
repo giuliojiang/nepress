@@ -13,7 +13,11 @@
             <div class="card-content blue-grey-text text-darken-4">
                 <span class="card-title">{{x.title}}</span>
                 <p>{{x.date.toDateString()}}</p>
-                <p>{{x.text}}</p>
+                <div class="row">
+                    <div class="col s12">
+                        <div [innerHTML]="x.text"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
