@@ -88,14 +88,12 @@ var handleHomeGetPosts = function(msgobj, socket) {
             for (var i = 0; i < docs.length; i++) {
                 var doc = docs[i];
                 var rendered = markdown.render(doc.text);
-                console.info("RENDERED " + rendered);
                 // Make sure the iframes have a responsive width
                 rendered = rendered.split("iframe").join('iframe style="width:100%;"');
                 var renderedSafe = sanitizeHtml(rendered, {
                     allowedTags: sanitizeAllowedTags,
                     allowedAttributes: sanitizeAllowedAttributes
                 });
-                console.info("SAFE " + renderedSafe);
                 postsResp.push({
                     title: doc.title,
                     date: doc.date.getTime(),

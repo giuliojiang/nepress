@@ -1,5 +1,13 @@
 <div class="container">
 
+    <!--Empty spacer-->
+    <div class="row">
+        <div class="col s12">
+            <div class="top_spacer"></div>
+        </div>
+    </div>
+
+    <!--Home Title-->
     <div class="row">
         <div class="card grey lighten-5">
             <div class="card-content blue-grey-text text-darken-4">
@@ -8,11 +16,53 @@
         </div>
     </div>
 
+    <!--Posts-->
     <div class="row" *ngFor="let x of posts">
         <div class="card grey lighten-5">
             <div class="card-content blue-grey-text text-darken-4">
-                <span class="card-title">{{x.title}}</span>
-                <p>{{x.date.toDateString()}}</p>
+                <div class="row">
+                    <div class="col s12">
+                        <span class="card-title">{{x.title}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="flex_container">
+                            <div class="flex_item">
+                                <p>{{x.date.toDateString()}}</p>
+                            </div>
+                            <div class="flex_item">
+                                <div class="flex_container">
+                                    <div class="flex_item">
+                                        <a class="waves-effect waves-light btn blue-grey lighten-2">
+                                            Edit
+                                        </a>
+                                    </div>
+                                    <div class="flex_item">
+                                        <a class="waves-effect waves-light btn blue-grey lighten-2">
+                                            Edit
+                                        </a>
+                                    </div>
+                                    <div class="flex_item">
+                                        <a class="waves-effect waves-light btn blue-grey lighten-2">
+                                            Edit
+                                        </a>
+                                    </div>
+                                    <div class="flex_item">
+                                        <a class="waves-effect waves-light btn blue-grey lighten-2">
+                                            Edit
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <hr />
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col s12">
                         <div [innerHTML]="x.text"></div>
@@ -22,24 +72,27 @@
         </div>
     </div>
 
+    <!--Page selector-->
     <div class="row">
         <div class="card grey lighten-5">
             <div class="card-content blue-grey-text text-darken-4">
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input placeholder="Page" id="home_page_input" type="number" [(ngModel)]="page" (keyup)="pageKeyUp($event)">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6">
-                        <a class="waves-effect waves-light btn blue-grey lighten-2" (click)="previousPage()">
-                            Previous
-                        </a>
-                    </div>
-                    <div class="col s6">
-                        <a class="waves-effect waves-light btn blue-grey lighten-2" (click)="nextPage()">
-                            Next
-                        </a>
+                    <div class="col s12">
+                        <div class="flex_container">
+                            <div class="flex_item">
+                                <a class="waves-effect waves-light btn blue-grey lighten-2" (click)="previousPage()">
+                                    Previous
+                                </a>
+                            </div>
+                            <div class="flex_item">
+                                <input placeholder="Page" id="home_page_input" type="number" [(ngModel)]="page" (keyup)="pageKeyUp($event)">
+                            </div>
+                            <div class="flex_item">
+                                <a class="waves-effect waves-light btn blue-grey lighten-2" (click)="nextPage()">
+                                    Next
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

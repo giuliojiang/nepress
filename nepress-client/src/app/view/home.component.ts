@@ -36,7 +36,12 @@ export class HomeComponent implements OnInit {
         // Register handlers
         this.socket.register("home_send_posts", msgobj => {
             this.posts = [];
-            this.page = msgobj.page + 1;
+            var newPage: number = msgobj.page + 1;
+            if (newPage == this.page) {
+                // If the new page is the requested one, scroll to top
+                this.globalutil.getWindow().scrollTo(0, 0);
+            }
+            this.page = newPage;
             var posts = msgobj.posts as any[];
             for (var i = 0; i < posts.length; i++) {
                 var post = posts[i];
@@ -47,7 +52,6 @@ export class HomeComponent implements OnInit {
                     text: safeHtml
                 });
             }
-            this.globalutil.getWindow().scrollTo(0, 0);
         });
 
         // Request posts
