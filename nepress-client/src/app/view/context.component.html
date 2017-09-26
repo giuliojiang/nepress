@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="card grey lighten-5">
+            <div class="card-content blue-grey-text text-darken-4">
+                <div class="row" *ngFor="let x of dropdown">
+                    <a (click)="x.action()">{{x.name}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
