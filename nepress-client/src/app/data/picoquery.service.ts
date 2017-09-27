@@ -19,10 +19,21 @@ export class PicoqueryService {
 
     // Position element A under element B
     positionBelow(idA: string, idB: string): void {
-        let boxB = null;
+        let boxB: ClientRect = null;
         this.executeOnElementById(idB, (elemB: HTMLElement) => {
-            boxB = elemB.getClientRects();
+            boxB = elemB.getBoundingClientRect();
         })
+        if (!boxB) {
+            return;
+        }
+        // Get the bottom-left corner coordinates
+        let bottom: number = boxB.bottom;
+        let left: number = boxB.left;
+        // Set element A's position
+        this.executeOnElementById(idA, (elemA: HTMLElement) => {
+            elemA.style.top = bottom + 'px';
+            elemA.style.left = left + 'px';
+        });
     }
 
     // Private methods --------------------------------------------------------

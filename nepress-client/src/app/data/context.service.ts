@@ -12,14 +12,14 @@ export class ContextService {
         this.registry[name] = component;
     }
 
-    open(name: string, dropdown: Array<ContextElement>): void {
+    open(name: string, dropdown: Array<ContextElement>, parentId: string): void {
         let theComponent: ContextComponent = this.registry[name];
         if (!theComponent) {
             console.error("No context component named " + name);
             return;
         }
         // Call the method open on the component
-        theComponent.open(dropdown);
+        theComponent.open(dropdown, parentId);
     }
 
 }
